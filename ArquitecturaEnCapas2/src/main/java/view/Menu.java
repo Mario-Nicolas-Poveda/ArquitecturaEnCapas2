@@ -159,5 +159,22 @@ public class Menu {
             for (Pasajero p : lista) { p.imprimirDetalle(); System.out.println("----------"); }
         }
 
+        private void menuTickets() {
+            int op = -1;
+            while (op != 0) {
+                System.out.println("\nTICKETS");
+                System.out.println("1. Vender Ticket");
+                System.out.println("2. Listar todos los Tickets");
+                System.out.println("0. Volver");
+                System.out.print("Opcion: ");
+                op = leerEntero();
+                switch (op) {
+                    case 1: venderTicket(); break;
+                    case 2: listarTickets(); break;
+                    case 0: break;
+                    default: System.out.println("Error opcion no valida");
+                }
+            }
+        }
 
 }
