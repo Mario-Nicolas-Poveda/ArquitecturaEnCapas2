@@ -152,5 +152,12 @@ public class Menu {
             if (lista.isEmpty()) { System.out.println("Error no hay conductores registrados"); return; }
             for (Conductor c : lista) { c.imprimirDetalle(); System.out.println("----------"); }
         }
+        
+        private void listarPasajeros() {
+            List<Pasajero> lista = personaService.listarPasajeros();
+            if (lista.isEmpty()) { System.out.println("Error hay pasajeros registrados"); return; }
+            for (Pasajero p : lista) { p.imprimirDetalle(); System.out.println("----------"); }
+        }
+
 
 }
