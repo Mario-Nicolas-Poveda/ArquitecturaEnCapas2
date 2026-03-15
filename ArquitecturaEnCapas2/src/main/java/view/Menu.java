@@ -84,5 +84,16 @@ public class Menu {
             System.out.println(vehiculoService.registrarVehiculo(v));
         }
 
+        private void listarVehiculos() {
+            List<Vehiculo> lista = vehiculoService.listarVehiculos();
+            if (lista.isEmpty()) {
+                System.out.println("No hay vehiculos registrados.");
+                return;
+            }
+            for (Vehiculo v : lista) {
+                v.imprimirDetalle();
+                System.out.println("----");
+            }
+        }
 
 }
