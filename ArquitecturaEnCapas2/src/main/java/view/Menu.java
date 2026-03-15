@@ -135,4 +135,16 @@ public class Menu {
             System.out.println(personaService.registrarConductor(c));
         }
 
+        private void registrarPasajero(String tipo) {
+            System.out.print("Cedula: ");
+            String cedula = sc.nextLine().trim();
+            System.out.print("Nombre: ");
+            String nombre = sc.nextLine().trim();
+            Pasajero p = null;
+            if (tipo.equals("Regular")) p = new PasajeroRegular(cedula, nombre);
+            else if (tipo.equals("Estudiante")) p = new PasajeroEstudiante(cedula, nombre);
+            else p = new PasajeroAdultoMayor(cedula, nombre);
+            System.out.println(personaService.registrarPasajero(p));
+        }
+
 }
