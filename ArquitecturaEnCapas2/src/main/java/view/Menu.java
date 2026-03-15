@@ -147,4 +147,10 @@ public class Menu {
             System.out.println(personaService.registrarPasajero(p));
         }
 
+        private void listarConductores() {
+            List<Conductor> lista = personaService.listarConductores();
+            if (lista.isEmpty()) { System.out.println("Error no hay conductores registrados"); return; }
+            for (Conductor c : lista) { c.imprimirDetalle(); System.out.println("----------"); }
+        }
+
 }
