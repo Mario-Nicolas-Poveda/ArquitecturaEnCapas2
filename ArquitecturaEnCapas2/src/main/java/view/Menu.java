@@ -13,16 +13,39 @@ import java.util.List;
  * @author Mario
  */
 public class Menu {
-        private Scanner sc;
-        private VehiculoService vehiculoService;
-        private PersonaService personaService;
-        private TicketService ticketService;
+    private Scanner sc;
+    private VehiculoService vehiculoService;
+    private PersonaService personaService;
+    private TicketService ticketService;
 
-        public Menu() {
-            sc = new Scanner(System.in);
-            vehiculoService = new VehiculoService();
-            personaService = new PersonaService();
-            ticketService = new TicketService(vehiculoService, personaService);
+    public Menu() {
+        sc = new Scanner(System.in);
+        vehiculoService = new VehiculoService();
+        personaService = new PersonaService();
+        ticketService = new TicketService(vehiculoService, personaService);
+    }
+
+        public void mostrarMenuPrincipal() {
+            int opcion = -1;
+            while (opcion != 0) {
+                System.out.println("MENU");
+                System.out.println("\n\n");
+                System.out.println("1. Gestion de vehiculos");
+                System.out.println("2. Gestion de personas");
+                System.out.println("3. Venta de tickets");
+                System.out.println("4. Consultas y estadisticas");
+                System.out.println("0. Salir");
+                System.out.print("Seleccione una opcion: ");
+                opcion = leerEntero();
+                switch (opcion) {
+                    case 1: menuVehiculos(); break;
+                    case 2: menuPersonas(); break;
+                    case 3: menuTickets(); break;
+                    case 4: menuEstadisticas(); break;
+                    case 0: System.out.println("Saliendo"); break;
+                    default: System.out.println("Error, opcion no valida");
+                }
+            }
         }
 
 }
