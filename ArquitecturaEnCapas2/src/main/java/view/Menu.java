@@ -87,12 +87,38 @@ public class Menu {
         private void listarVehiculos() {
             List<Vehiculo> lista = vehiculoService.listarVehiculos();
             if (lista.isEmpty()) {
-                System.out.println("No hay vehiculos registrados.");
+                System.out.println("Error no hay vehiculos registrados");
                 return;
             }
             for (Vehiculo v : lista) {
                 v.imprimirDetalle();
                 System.out.println("----");
+            }
+        }
+        
+        private void menuPersonas() {
+            int op = -1;
+            while (op != 0) {
+                System.out.println("\nPERSONAS");
+                System.out.println("1. Registrar Conductor");
+                System.out.println("2. Registrar Pasajero Regular");
+                System.out.println("3. Registrar Pasajero Estudiante");
+                System.out.println("4. Registrar Pasajero Adulto Mayor");
+                System.out.println("5. Listar Conductores");
+                System.out.println("6. Listar Pasajeros");
+                System.out.println("0. Volver");
+                System.out.print("Opcion: ");
+                op = leerEntero();
+                switch (op) {
+                    case 1: registrarConductor(); break;
+                    case 2: registrarPasajero("Regular"); break;
+                    case 3: registrarPasajero("Estudiante"); break;
+                    case 4: registrarPasajero("AdultoMayor"); break;
+                    case 5: listarConductores(); break;
+                    case 6: listarPasajeros(); break;
+                    case 0: break;
+                    default: System.out.println("Opcion no valida");
+                }
             }
         }
 
