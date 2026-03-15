@@ -69,5 +69,20 @@ public class Menu {
             }
         }
     }
+    
+        private void registrarVehiculo(String tipo) {
+            System.out.print("Placa: ");
+            String placa = sc.nextLine().trim();
+            System.out.print("Ruta: ");
+            String ruta = sc.nextLine().trim();
+
+            Vehiculo v = null;
+            if (tipo.equals("Buseta")) v = new Buseta(placa, ruta);
+            else if (tipo.equals("MicroBus")) v = new MicroBus(placa, ruta);
+            else v = new Bus(placa, ruta);
+
+            System.out.println(vehiculoService.registrarVehiculo(v));
+        }
+
 
 }
