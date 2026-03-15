@@ -117,9 +117,22 @@ public class Menu {
                     case 5: listarConductores(); break;
                     case 6: listarPasajeros(); break;
                     case 0: break;
-                    default: System.out.println("Opcion no valida");
+                    default: System.out.println("Error opcion no valida");
                 }
             }
+        }
+    
+        private void registrarConductor() {
+            System.out.print("Cedula: ");
+            String cedula = sc.nextLine().trim();
+            System.out.print("Nombre: ");
+            String nombre = sc.nextLine().trim();
+            System.out.print("Numero de licencia: ");
+            String licencia = sc.nextLine().trim();
+            System.out.print("Categoria de licencia (B1, B2, C1, C2): ");
+            String categoria = sc.nextLine().trim();
+            Conductor c = new Conductor(cedula, nombre, licencia, categoria);
+            System.out.println(personaService.registrarConductor(c));
         }
 
 }
