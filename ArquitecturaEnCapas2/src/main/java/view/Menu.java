@@ -177,4 +177,16 @@ public class Menu {
             }
         }
 
+        private void venderTicket() {
+            System.out.print("Cedula del pasajero: ");
+            String cedula = sc.nextLine().trim();
+            System.out.print("Placa del vehiculo: ");
+            String placa = sc.nextLine().trim();
+            System.out.print("Origen: ");
+            String origen = sc.nextLine().trim();
+            System.out.print("Destino: ");
+            String destino = sc.nextLine().trim();
+            System.out.println(ticketService.venderTicket(cedula, placa, origen, destino));
+        }
+
 }
