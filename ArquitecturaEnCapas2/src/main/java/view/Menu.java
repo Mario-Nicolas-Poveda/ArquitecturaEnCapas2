@@ -189,4 +189,10 @@ public class Menu {
             System.out.println(ticketService.venderTicket(cedula, placa, origen, destino));
         }
 
+        private void listarTickets() {
+            List<Ticket> lista = ticketService.listarTickets();
+            if (lista.isEmpty()) { System.out.println("Error, no hay tickets vendidos"); return; }
+            for (Ticket t : lista) { t.imprimirDetalle(); System.out.println("---------------"); }
+        }
+
 }
