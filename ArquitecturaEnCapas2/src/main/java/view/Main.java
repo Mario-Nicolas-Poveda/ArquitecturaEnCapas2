@@ -3,13 +3,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package view;
-
+import view.Menu;
 /**
  *
  * @author Mario
  */
-public class NewClass {
+public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        System.out.println("Iniciando Sistema");
+        Menu menu = new Menu();
+        menu.mostrarMenuPrincipal();
     }
+
 }
