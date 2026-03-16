@@ -195,4 +195,24 @@ public class Menu {
             for (Ticket t : lista) { t.imprimirDetalle(); System.out.println("---------------"); }
         }
 
+        private void menuEstadisticas() {
+            int op = -1;
+            while (op != 0) {
+                System.out.println("\nESTADISTICAS");
+                System.out.println("1. Total recaudado");
+                System.out.println("2. Pasajeros por tipo");
+                System.out.println("3. Vehiculo con mas tickets");
+                System.out.println("0. Volver");
+                System.out.print("Opcion: ");
+                op = leerEntero();
+                switch (op) {
+                    case 1: System.out.println("Total recaudado: $" + ticketService.calcularTotalRecaudado()); break;
+                    case 2: ticketService.mostrarPasajerosPorTipo(); break;
+                    case 3: ticketService.mostrarVehiculoConMasTickets(); break;
+                    case 0: break;
+                    default: System.out.println("Error, opcion no valida");
+                }
+            }
+        }
+
 }
