@@ -215,4 +215,13 @@ public class Menu {
             }
         }
 
+        private int leerEntero() {
+            try {
+                String linea = sc.nextLine();
+                return Integer.parseInt(linea.trim());
+            } catch (NumberFormatException e) {
+                return -1;
+            }
+        }
+
 }
