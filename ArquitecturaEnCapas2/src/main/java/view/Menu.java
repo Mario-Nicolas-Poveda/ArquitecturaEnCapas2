@@ -30,21 +30,68 @@ public class Menu {
         while (opcion != 0) {
             System.out.println("MENU");
             System.out.println("\n\n");
-            System.out.println("1. Gestion de vehiculos");
-            System.out.println("2. Gestion de personas");
-            System.out.println("3. Venta de tickets");
-            System.out.println("4. Consultas y estadisticas");
+            System.out.println("1. Gestion de Rutas");
+            System.out.println("2. Gestion de vehiculos");
+            System.out.println("3. Gestion de personas");
+            System.out.println("4. Venta de tickets");
+            System.out.println("5. Consultas y estadisticas");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opcion: ");
             opcion = leerEntero();
             switch (opcion) {
-                case 1: menuVehiculos(); break;
-                case 2: menuPersonas(); break;
-                case 3: menuTickets(); break;
-                case 4: menuEstadisticas(); break;
+                case 1: menuRutas(); break;
+                case 2: menuVehiculos(); break;
+                case 3: menuPersonas(); break;
+                case 4: menuTickets(); break;
+                case 5: menuEstadisticas(); break;
                 case 0: System.out.println("Saliendo"); break;
                 default: System.out.println("Error, opcion no valida");
             }
+        }
+    }
+    
+    private void menuRutas() {
+        int op = -1;
+        while (op != 0) {
+            System.out.println("\nRUTAS");
+            System.out.println("1. Registrar Ruta");
+            System.out.println("2. Listar Rutas");
+            System.out.println("0. Volver");
+            System.out.print("Opcion: ");
+            op = leerEntero();
+            switch (op) {
+                case 1: registrarRuta(); break;
+                case 2: listarRutas(); break;
+                case 0: break;
+                default: System.out.println("Opcion no valida.");
+            }
+        }
+    }
+    
+    private void registrarRuta() {
+        System.out.print("Codigo de ruta: ");
+        String codigo = sc.nextLine().trim();
+        System.out.print("Ciudad origen: ");
+        String origen = sc.nextLine().trim();
+        System.out.print("Ciudad destino: ");
+        String destino = sc.nextLine().trim();
+        System.out.print("Distancia (km): ");
+        double distancia = leerDouble();
+        System.out.print("Tiempo estimado (minutos): ");
+        int tiempo = leerEntero();
+        Ruta r = new Ruta(codigo, origen, destino, distancia, tiempo);
+        System.out.println(rutaService.registrarRuta(r));
+    }
+
+    private void listarRutas() {
+        List<Ruta> lista = rutaService.listarRutas();
+        if (lista.isEmpty()) { 
+            System.out.println("No hay rutas registradas"); 
+            return; 
+        }
+        for (Ruta r : lista) { 
+            r.imprimirDetalle(); 
+            System.out.println("-------------"); 
         }
     }
 
@@ -73,14 +120,29 @@ public class Menu {
         private void registrarVehiculo(String tipo) {
             System.out.print("Placa: ");
             String placa = sc.nextLine().trim();
-            System.out.print("Ruta: ");
-            String ruta = sc.nextLine().trim();
 
-            Vehiculo v = null;
-            if (tipo.equals("Buseta")) v = new Buseta(placa, ruta);
-            else if (tipo.equals("MicroBus")) v = new MicroBus(placa, ruta);
-            else v = new Bus(placa, ruta);
+            List<Ruta> rutas = rutaService.listarRutas();
+            if (rutas.isEmpty()) {
+                System.out.println("Error, no hay rutas registradas registra una ruta primero");
+                System.out.print("Ingresa el nombre de ruta manualmente: ");
+                String rutaManual = sc.nextLine().trim();
+                Vehiculo v = crearVehiculo(tipo, placa, rutaManual);
+                System.out.println(vehiculoService.registrarVehiculo(v));
+                return;
+            }
 
+            System.out.println("Rutas disponibles:");
+            for (int i = 0; i < rutas.size(); i++) {
+                System.out.println((i + 1) + ". " + rutas.get(i));
+            }
+            System.out.print("Selecciona el numero de ruta: ");
+            int seleccion = leerEntero();
+            if (seleccion < 1 || seleccion > rutas.size()) {
+                System.out.println("Seleccion invalida");
+                return;
+            }
+            Ruta rutaSeleccionada = rutas.get(seleccion - 1);
+            Vehiculo v = crearVehiculo(tipo, placa, rutaSeleccionada.toString());
             System.out.println(vehiculoService.registrarVehiculo(v));
         }
 
@@ -140,11 +202,9 @@ public class Menu {
             String cedula = sc.nextLine().trim();
             System.out.print("Nombre: ");
             String nombre = sc.nextLine().trim();
-            Pasajero p = null;
-            if (tipo.equals("Regular")) p = new PasajeroRegular(cedula, nombre);
-            else if (tipo.equals("Estudiante")) p = new PasajeroEstudiante(cedula, nombre);
-            else p = new PasajeroAdultoMayor(cedula, nombre);
-            System.out.println(personaService.registrarPasajero(p));
+            System.out.print("Fecha de nacimiento (dd/MM/yyyy): ");
+            String fechaNac = sc.nextLine().trim();
+            System.out.println(personaService.registrarPasajero(cedula, nombre, fechaNac, tipo));
         }
 
         private void listarConductores() {
