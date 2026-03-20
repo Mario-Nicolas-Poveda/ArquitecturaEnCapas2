@@ -67,6 +67,22 @@ public class Menu {
             }
         }
     }
+    
+    private void registrarRuta() {
+        System.out.print("Codigo de ruta: ");
+        String codigo = sc.nextLine().trim();
+        System.out.print("Ciudad origen: ");
+        String origen = sc.nextLine().trim();
+        System.out.print("Ciudad destino: ");
+        String destino = sc.nextLine().trim();
+        System.out.print("Distancia (km): ");
+        double distancia = leerDouble();
+        System.out.print("Tiempo estimado (minutos): ");
+        int tiempo = leerEntero();
+        Ruta r = new Ruta(codigo, origen, destino, distancia, tiempo);
+        System.out.println(rutaService.registrarRuta(r));
+    }
+
 
 
     private void menuVehiculos() {
