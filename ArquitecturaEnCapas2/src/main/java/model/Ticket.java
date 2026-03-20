@@ -1,12 +1,12 @@
-
 package model;
 
 /**
  *
  * @author alex
  */
+public class Ticket implements Imprimible, Calculable
+{
 
-public class Ticket implements Imprimible, Calculable {
     private String id;
     private Pasajero pasajero;
     private Vehiculo vehiculo;
@@ -14,26 +14,37 @@ public class Ticket implements Imprimible, Calculable {
     private String origen;
     private String destino;
     private double valorFinal;
+    private boolean esFestivo;
 
-    public Ticket(String id, Pasajero pasajero, Vehiculo vehiculo, String fechaCompra, String origen, String destino) {
+    public Ticket(String id, Pasajero pasajero, Vehiculo vehiculo, String fechaCompra, String origen, String destino)
+    {
         this.id = id;
         this.pasajero = pasajero;
         this.vehiculo = vehiculo;
         this.fechaCompra = fechaCompra;
         this.origen = origen;
         this.destino = destino;
+        this.esFestivo = false;
         this.valorFinal = calcularTotal();
     }
 
     @Override
-    public double calcularTotal() {
+    public double calcularTotal()
+    {
         double tarifa = vehiculo.getTarifaBase();
         double descuento = pasajero.calcularDescuento();
         return tarifa - (tarifa * descuento);
     }
 
+    public void recargoFestivo(double porcentaje)
+    {
+        this.esFestivo = true;
+        this.valorFinal = valorFinal + (valorFinal * porcentaje);
+    }
+
     @Override
-    public void imprimirDetalle() {
+    public void imprimirDetalle()
+    {
         System.out.println("=== TICKET ===");
         System.out.println("ID: " + id);
         System.out.println("Pasajero: " + pasajero.getNombre() + " (" + pasajero.getCedula() + ")");
@@ -44,36 +55,44 @@ public class Ticket implements Imprimible, Calculable {
         System.out.println("Valor final: $" + valorFinal);
     }
 
-    public String getId() {
-        return id; 
-    }
-    
-    public Pasajero getPasajero() {
-        return pasajero; 
-    }
-    
-    public Vehiculo getVehiculo() {
-        return vehiculo; 
-    }
-    
-    public String getFechaCompra() {
-        return fechaCompra; 
-    }
-    
-    public String getOrigen() {
-        return origen; 
-    }
-    
-    public String getDestino() {
-        return destino; 
-    }
-    
-    public double getValorFinal() {
-        return valorFinal; 
+    public String getId()
+    {
+        return id;
     }
 
-    public String toTexto() {
+    public Pasajero getPasajero()
+    {
+        return pasajero;
+    }
+
+    public Vehiculo getVehiculo()
+    {
+        return vehiculo;
+    }
+
+    public String getFechaCompra()
+    {
+        return fechaCompra;
+    }
+
+    public String getOrigen()
+    {
+        return origen;
+    }
+
+    public String getDestino()
+    {
+        return destino;
+    }
+
+    public double getValorFinal()
+    {
+        return valorFinal;
+    }
+
+    public String toTexto()
+    {
         return id + ";" + pasajero.getCedula() + ";" + vehiculo.getPlaca() + ";" + fechaCompra + ";" + origen + ";" + destino + ";" + valorFinal;
     }
-    
+
 }
