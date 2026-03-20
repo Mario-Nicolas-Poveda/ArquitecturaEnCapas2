@@ -83,6 +83,18 @@ public class Menu {
         System.out.println(rutaService.registrarRuta(r));
     }
 
+    private void listarRutas() {
+        List<Ruta> lista = rutaService.listarRutas();
+        if (lista.isEmpty()) { 
+            System.out.println("No hay rutas registradas"); 
+            return; 
+        }
+        for (Ruta r : lista) { 
+            r.imprimirDetalle(); 
+            System.out.println("-------------"); 
+        }
+    }
+
 
 
     private void menuVehiculos() {
