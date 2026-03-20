@@ -202,11 +202,9 @@ public class Menu {
             String cedula = sc.nextLine().trim();
             System.out.print("Nombre: ");
             String nombre = sc.nextLine().trim();
-            Pasajero p = null;
-            if (tipo.equals("Regular")) p = new PasajeroRegular(cedula, nombre);
-            else if (tipo.equals("Estudiante")) p = new PasajeroEstudiante(cedula, nombre);
-            else p = new PasajeroAdultoMayor(cedula, nombre);
-            System.out.println(personaService.registrarPasajero(p));
+            System.out.print("Fecha de nacimiento (dd/MM/yyyy): ");
+            String fechaNac = sc.nextLine().trim();
+            System.out.println(personaService.registrarPasajero(cedula, nombre, fechaNac, tipo));
         }
 
         private void listarConductores() {
