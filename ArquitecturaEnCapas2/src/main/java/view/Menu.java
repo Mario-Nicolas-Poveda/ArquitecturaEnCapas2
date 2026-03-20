@@ -73,6 +73,17 @@ public class Menu {
             }
         }
     }
+    
+    private void reportePorFecha() {
+        System.out.print("Ingresa la fecha (dd/MM/yyyy): ");
+        String fecha = sc.nextLine().trim();
+        List<Ticket> lista = ticketService.filtrarPorFecha(fecha);
+        System.out.println("Tickets del " + fecha + ": " + lista.size());
+        for (Ticket t : lista) {
+            t.imprimirDetalle();
+            System.out.println("----------");
+        }
+    }
 
     private void menuRutas() {
         int op = -1;
