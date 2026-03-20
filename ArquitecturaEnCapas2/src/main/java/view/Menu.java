@@ -86,6 +86,18 @@ public class Menu {
         }
     }
     
+    private void reportePorTipoPasajero() {
+        System.out.println("Tipos: Regular | Estudiante | AdultoMayor");
+        System.out.print("Ingresa el tipo: ");
+        String tipo = sc.nextLine().trim();
+        List<Ticket> lista = ticketService.filtrarPorTipoPasajero(tipo);
+        System.out.println("Tickets de pasajeros " + tipo + ": " + lista.size());
+        for (Ticket t : lista) {
+            t.imprimirDetalle();
+            System.out.println("-----------");
+        }
+    }
+    
     private void reportePorFecha() {
         System.out.print("Ingresa la fecha (dd/MM/yyyy): ");
         String fecha = sc.nextLine().trim();
