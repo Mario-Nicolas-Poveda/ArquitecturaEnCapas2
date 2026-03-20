@@ -52,6 +52,28 @@ public class Menu {
         }
     }
     
+    private void menuReportes() {
+        int op = -1;
+        while (op != 0) {
+            System.out.println("\nREPORTES CON FILTROS");
+            System.out.println("1. Tickets por fecha especifica");
+            System.out.println("2. Tickets por tipo de vehiculo");
+            System.out.println("3. Tickets por tipo de pasajero");
+            System.out.println("4. Resumen del dia actual");
+            System.out.println("0. Volver");
+            System.out.print("Opcion: ");
+            op = leerEntero();
+            switch (op) {
+                case 1: reportePorFecha(); break;
+                case 2: reportePorTipoVehiculo(); break;
+                case 3: reportePorTipoPasajero(); break;
+                case 4: ticketService.mostrarResumenDia(); break;
+                case 0: break;
+                default: System.out.println("Error opcion no valida");
+            }
+        }
+    }
+
     private void menuRutas() {
         int op = -1;
         while (op != 0) {
@@ -65,7 +87,7 @@ public class Menu {
                 case 1: registrarRuta(); break;
                 case 2: listarRutas(); break;
                 case 0: break;
-                default: System.out.println("Opcion no valida.");
+                default: System.out.println("Opcion no valida");
             }
         }
     }
