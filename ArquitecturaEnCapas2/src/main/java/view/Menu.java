@@ -30,23 +30,44 @@ public class Menu {
         while (opcion != 0) {
             System.out.println("MENU");
             System.out.println("\n\n");
-            System.out.println("1. Gestion de vehiculos");
-            System.out.println("2. Gestion de personas");
-            System.out.println("3. Venta de tickets");
-            System.out.println("4. Consultas y estadisticas");
+            System.out.println("1. Gestion de Rutas");
+            System.out.println("2. Gestion de vehiculos");
+            System.out.println("3. Gestion de personas");
+            System.out.println("4. Venta de tickets");
+            System.out.println("5. Consultas y estadisticas");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opcion: ");
             opcion = leerEntero();
             switch (opcion) {
-                case 1: menuVehiculos(); break;
-                case 2: menuPersonas(); break;
-                case 3: menuTickets(); break;
-                case 4: menuEstadisticas(); break;
+                case 1: menuRutas(); break;
+                case 2: menuVehiculos(); break;
+                case 3: menuPersonas(); break;
+                case 4: menuTickets(); break;
+                case 5: menuEstadisticas(); break;
                 case 0: System.out.println("Saliendo"); break;
                 default: System.out.println("Error, opcion no valida");
             }
         }
     }
+    
+    private void menuRutas() {
+        int op = -1;
+        while (op != 0) {
+            System.out.println("\nRUTAS");
+            System.out.println("1. Registrar Ruta");
+            System.out.println("2. Listar Rutas");
+            System.out.println("0. Volver");
+            System.out.print("Opcion: ");
+            op = leerEntero();
+            switch (op) {
+                case 1: registrarRuta(); break;
+                case 2: listarRutas(); break;
+                case 0: break;
+                default: System.out.println("Opcion no valida.");
+            }
+        }
+    }
+
 
     private void menuVehiculos() {
         int op = -1;
