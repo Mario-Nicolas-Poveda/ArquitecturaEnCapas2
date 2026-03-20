@@ -28,12 +28,28 @@ public class PersonaService {
         return "Conductor registrado correctamente.";
     }
 
-    public String registrarPasajero(Pasajero p) {
+    public String registrarPasajero(String cedula, String nombre, String fechaNacimiento, String tipoSolicitado) {
+        PasajeroRegular temporal = new PasajeroRegular(cedula, nombre, fechaNacimiento);
+        Pasajero p;
+
+        if (temporal.esAdultoMayor()) {
+            p = new PasajeroAdultoMayor(cedula, nombre, fechaNacimiento);
+            pasajeros.add(p);
+            personaDAO.guardarPasajero(p);
+            return "Pasajero registrado como ADULTO MAYOR automaticamente (edad: "
+                    + temporal.calcularEdad() + " anos). Descuento 30% aplicado.";
+        }
+        
+        if (tipoSolicitado.equals("Estudiante")) {
+            p = new PasajeroEstudiante(cedula, nombre, fechaNacimiento);
+        } else {
+            p = new PasajeroRegular(cedula, nombre, fechaNacimiento);
+        }
         pasajeros.add(p);
         personaDAO.guardarPasajero(p);
-        return "Pasajero registrado correctamente.";
+        return "Pasajero registrado como " + p.getTipo() + " correctamente.";
     }
-
+    
     public Conductor buscarConductorPorCedula(String cedula) {
         for (Conductor c : conductores) {
             if (c.getCedula().equals(cedula)) return c;
