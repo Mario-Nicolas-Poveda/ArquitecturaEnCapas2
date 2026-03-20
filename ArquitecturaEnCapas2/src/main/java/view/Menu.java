@@ -95,8 +95,6 @@ public class Menu {
         }
     }
 
-
-
     private void menuVehiculos() {
         int op = -1;
         while (op != 0) {
@@ -122,14 +120,29 @@ public class Menu {
         private void registrarVehiculo(String tipo) {
             System.out.print("Placa: ");
             String placa = sc.nextLine().trim();
-            System.out.print("Ruta: ");
-            String ruta = sc.nextLine().trim();
 
-            Vehiculo v = null;
-            if (tipo.equals("Buseta")) v = new Buseta(placa, ruta);
-            else if (tipo.equals("MicroBus")) v = new MicroBus(placa, ruta);
-            else v = new Bus(placa, ruta);
+            List<Ruta> rutas = rutaService.listarRutas();
+            if (rutas.isEmpty()) {
+                System.out.println("Error, no hay rutas registradas registra una ruta primero");
+                System.out.print("Ingresa el nombre de ruta manualmente: ");
+                String rutaManual = sc.nextLine().trim();
+                Vehiculo v = crearVehiculo(tipo, placa, rutaManual);
+                System.out.println(vehiculoService.registrarVehiculo(v));
+                return;
+            }
 
+            System.out.println("Rutas disponibles:");
+            for (int i = 0; i < rutas.size(); i++) {
+                System.out.println((i + 1) + ". " + rutas.get(i));
+            }
+            System.out.print("Selecciona el numero de ruta: ");
+            int seleccion = leerEntero();
+            if (seleccion < 1 || seleccion > rutas.size()) {
+                System.out.println("Seleccion invalida");
+                return;
+            }
+            Ruta rutaSeleccionada = rutas.get(seleccion - 1);
+            Vehiculo v = crearVehiculo(tipo, placa, rutaSeleccionada.toString());
             System.out.println(vehiculoService.registrarVehiculo(v));
         }
 
