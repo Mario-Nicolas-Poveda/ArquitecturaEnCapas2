@@ -93,7 +93,12 @@ public class Menu {
         String fechaViaje = sc.nextLine().trim();
         System.out.println(reservaService.crearReserva(cedula, placa, fechaViaje));
     }
-
+    
+    private void cancelarReserva() {
+        System.out.print("Codigo de la reserva: ");
+        String codigo = sc.nextLine().trim();
+        System.out.println(reservaService.cancelarReserva(codigo));
+    }
     
     private void menuReportes() {
         int op = -1;
