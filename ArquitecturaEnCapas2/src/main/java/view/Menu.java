@@ -726,6 +726,22 @@ public class Menu {
             }
         }
     }
+    
+    private int leerEnteroRango(int min, int max) {
+        while (true) {
+            System.out.print("Selecciona el numero de ruta: ");
+            try {
+                int valor = Integer.parseInt(sc.nextLine().trim());
+                if (valor < min || valor > max) {
+                    System.out.println("ERROR: Ingrese un numero entre " + min + " y " + max + ".");
+                } else {
+                    return valor;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("ERROR: Ingrese un numero valido.");
+            }
+        }
+    }
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
