@@ -646,6 +646,20 @@ public class Menu {
             }
         }
     }
+    
+    private String leerFechaViaje() {
+        while (true) {
+            String valor = leerFecha("Fecha del viaje");
+            java.time.format.DateTimeFormatter fmt =
+                    java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            java.time.LocalDate fecha = java.time.LocalDate.parse(valor, fmt);
+            if (fecha.isBefore(java.time.LocalDate.now())) {
+                System.out.println("ERROR: La fecha del viaje no puede ser en el pasado.");
+            } else {
+                return valor;
+            }
+        }
+    }
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
