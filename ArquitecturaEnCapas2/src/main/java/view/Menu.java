@@ -755,6 +755,11 @@ public class Menu {
             for (int i = 0; i < 50; i++) System.out.println();
         }
     }
+    
+    private void pausar() {
+        System.out.println("\nPresione Enter para continuar...");
+        sc.nextLine();
+    }
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
