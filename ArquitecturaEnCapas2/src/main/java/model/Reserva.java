@@ -34,4 +34,11 @@ public class Reserva implements Imprimible
         this.estado = ACTIVA;
     }
 
+    public Reserva(String codigo, Pasajero pasajero, Vehiculo vehiculo,
+            String fechaCreacion, String fechaViaje, String estado)
+    {
+        this(codigo, pasajero, vehiculo, fechaCreacion, fechaViaje);
+        this.estado = estado;
+    }
+
 }
