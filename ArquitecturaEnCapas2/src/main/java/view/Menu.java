@@ -451,6 +451,24 @@ public class Menu {
            else return new Bus(placa, ruta);
        }
    
+        
+        //validaciones
+        
+        // Solo letras y espacios (para nombres)
+        private String leerNombre(String campo) {
+            String valor;
+            while (true) {
+                System.out.print(campo + ": ");
+                valor = sc.nextLine().trim();
+                if (valor.isEmpty()) {
+                    System.out.println("ERROR: El campo no puede estar vacio.");
+                } else if (!valor.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+                    System.out.println("ERROR: " + campo + " solo puede contener letras");
+                } else {
+                    return valor;
+                }
+            }
+        }
 }
 
 
