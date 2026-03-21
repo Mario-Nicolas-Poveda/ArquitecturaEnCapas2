@@ -676,6 +676,18 @@ public class Menu {
             }
         }
     }
+    
+    private String leerCategoria() {
+        while (true) {
+            System.out.print("Categoria de licencia (B1, B2, C1, C2): ");
+            String valor = sc.nextLine().trim().toUpperCase();
+            if (valor.equals("B1") || valor.equals("B2")
+                    || valor.equals("C1") || valor.equals("C2")) {
+                return valor;
+            }
+            System.out.println("ERROR: Categoria invalida. Solo se acepta B1, B2, C1 o C2.");
+        }
+    }
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
