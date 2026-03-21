@@ -84,6 +84,17 @@ public class Menu {
         }
     }
     
+    private void crearReserva() {
+        System.out.print("Cedula del pasajero: ");
+        String cedula = sc.nextLine().trim();
+        System.out.print("Placa del vehiculo: ");
+        String placa = sc.nextLine().trim();
+        System.out.print("Fecha del viaje (dd/MM/yyyy): ");
+        String fechaViaje = sc.nextLine().trim();
+        System.out.println(reservaService.crearReserva(cedula, placa, fechaViaje));
+    }
+
+    
     private void menuReportes() {
         int op = -1;
         while (op != 0) {
