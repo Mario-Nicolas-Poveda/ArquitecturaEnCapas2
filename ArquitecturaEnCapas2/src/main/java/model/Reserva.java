@@ -131,4 +131,10 @@ public class Reserva implements Imprimible
         }
     }
 
+    public String toTexto()
+    {
+        return codigo + ";" + pasajero.getCedula() + ";" + vehiculo.getPlaca()
+                + ";" + fechaCreacion + ";" + fechaViaje + ";" + estado;
+    }
+
 }
