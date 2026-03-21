@@ -2,6 +2,7 @@
 package service;
 
 import dao.ReservaDAO;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,4 +50,40 @@ public class ReservaService {
         }
     }
 
+    public String crearReserva(String cedulaPasajero, String placaVehiculo, String fechaViaje) {
+        Pasajero pasajero = personaService.buscarPasajeroPorCedula(cedulaPasajero);
+        if (pasajero == null)
+            return "ERROR: No existe pasajero con cedula " + cedulaPasajero;
+
+        Vehiculo vehiculo = vehiculoService.buscarPorPlaca(placaVehiculo);
+        if (vehiculo == null)
+            return "ERROR: No existe vehiculo con placa " + placaVehiculo;
+   
+        for (Reserva r : reservas) {
+            if (r.isActiva()
+                    && r.getPasajero().getCedula().equals(cedulaPasajero)
+                    && r.getVehiculo().getPlaca().equals(placaVehiculo)
+                    && r.getFechaViaje().equals(fechaViaje)) {
+                return "ERROR: El pasajero ya tiene una reserva activa en ese vehiculo para la fecha " + fechaViaje;
+            }
+        }
+
+        int ocupados = vehiculo.getPasajerosActuales() + contarReservasActivas(placaVehiculo);
+        if (ocupados >= vehiculo.getCapacidadMaxima()) {
+            return "ERROR: El vehiculo " + placaVehiculo + " no tiene cupos disponibles (capacidad llena con tickets + reservas).";
+        }
+
+        String fechaCreacion = LocalDateTime.now().format(FMT);
+        String codigo = "RS" + (reservas.size() + 1);
+
+        Reserva reserva = new Reserva(codigo, pasajero, vehiculo, fechaCreacion, fechaViaje);
+        reservas.add(reserva);
+        reservaDAO.guardarReserva(reserva);
+
+        return "Reserva creada exitosamente.\n"
+                + "Codigo: " + codigo + "\n"
+             + "Recuerde: tiene 24 horas para convertirla en ticket antes de que expire.";
+    }
+
+    
 }
