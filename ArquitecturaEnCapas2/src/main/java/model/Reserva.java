@@ -113,4 +113,22 @@ public class Reserva implements Imprimible
         return estado;
     }
 
+    @Override
+    public void imprimirDetalle()
+    {
+        System.out.println("=== RESERVA ===");
+        System.out.println("Codigo:          " + codigo);
+        System.out.println("Pasajero:        " + pasajero.getNombre()
+                + " (" + pasajero.getCedula() + ")");
+        System.out.println("Vehiculo:        " + vehiculo.getTipo()
+                + " - Placa: " + vehiculo.getPlaca());
+        System.out.println("Fecha creacion:  " + fechaCreacion);
+        System.out.println("Fecha viaje:     " + fechaViaje);
+        System.out.println("Estado:          " + estado);
+        if (estaVencida())
+        {
+            System.out.println("*** RESERVA VENCIDA (mas de 24h) ***");
+        }
+    }
+
 }
