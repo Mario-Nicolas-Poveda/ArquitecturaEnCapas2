@@ -289,6 +289,14 @@ public class Menu {
             try { return Double.parseDouble(sc.nextLine().trim()); }
             catch (NumberFormatException e) { return 0; }
         }
-    }
+        
+        
+        private Vehiculo crearVehiculo(String tipo, String placa, String ruta) {
+           if (tipo.equals("Buseta")) return new Buseta(placa, ruta);
+           else if (tipo.equals("MicroBus")) return new MicroBus(placa, ruta);
+           else return new Bus(placa, ruta);
+       }
+   
+}
 
 
