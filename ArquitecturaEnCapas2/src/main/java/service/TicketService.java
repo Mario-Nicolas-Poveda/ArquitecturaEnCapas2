@@ -89,7 +89,7 @@ public class TicketService {
         Ticket ticket = new Ticket(id, pasajero, vehiculo, fecha, origen, destino);
 
         if (esFestivo(fecha)) {
-            ticket.aplicarRecargoFestivo(0.20);
+            ticket.recargoFestivo(0.20);
         }
 
         tickets.add(ticket);
