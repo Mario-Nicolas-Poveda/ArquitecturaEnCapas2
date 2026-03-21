@@ -18,6 +18,7 @@ public class Menu {
     private PersonaService personaService;
     private TicketService ticketService;
     private RutaService rutaService;
+    private ReservaService  reservaService;
 
     public Menu() {
         sc = new Scanner(System.in);
@@ -25,6 +26,7 @@ public class Menu {
         personaService = new PersonaService();
         ticketService = new TicketService(vehiculoService, personaService);
         rutaService = new RutaService();
+        reservaService  = new ReservaService(vehiculoService, personaService, ticketService);
     }
 
     public void mostrarMenuPrincipal() {
