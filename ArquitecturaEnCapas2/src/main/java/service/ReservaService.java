@@ -156,6 +156,13 @@ public class ReservaService {
         }
         return null;
     }
-
     
+    private int contarReservasActivas(String placa) {
+        int count = 0;
+        for (Reserva r : reservas) {
+            if (r.isActiva() && r.getVehiculo().getPlaca().equals(placa)) count++;
+        }
+        return count;
+    }
+  
 }
