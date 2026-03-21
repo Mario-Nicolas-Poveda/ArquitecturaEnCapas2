@@ -97,5 +97,26 @@ public class ReservaService {
         return "Reserva " + codigo + " cancelada. El cupo queda disponible.";
     }
     
-    
+    public String convertirEnTicket(String codigo, String origen, String destino) {
+        Reserva r = buscarPorCodigo(codigo);
+        
+        if (r == null)
+            return "ERROR: No existe reserva con codigo " + codigo;
+        if (!r.isActiva())
+            return "ERROR: La reserva " + codigo + " no esta activa (estado: " + r.getEstado() + ")";
+        if (r.estaVencida())
+            return "ERROR: La reserva " + codigo + " esta vencida (mas de 24h). No se puede convertir.";
+
+        String resultado = ticketService.venderTicket(
+                r.getPasajero().getCedula(),
+                r.getVehiculo().getPlaca(),
+                origen, destino);
+
+        if (resultado.startsWith("ERROR")) return resultado;
+        r.convertir();
+        reservaDAO.reescribirReservas(reservas);
+
+        return "Reserva " + codigo + " convertida en ticket exitosamente.\n" + resultado;
+    }
+
 }
