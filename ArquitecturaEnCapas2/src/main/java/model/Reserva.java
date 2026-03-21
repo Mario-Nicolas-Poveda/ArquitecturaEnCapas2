@@ -58,4 +58,59 @@ public class Reserva implements Imprimible
         }
     }
 
+    public void cancelar()
+    {
+        this.estado = CANCELADA;
+    }
+
+    public void convertir()
+    {
+        this.estado = CONVERTIDA;
+    }
+
+    public boolean isActiva()
+    {
+        return estado.equals(ACTIVA);
+    }
+
+    public boolean isConvertida()
+    {
+        return estado.equals(CONVERTIDA);
+    }
+
+    public boolean isCancelada()
+    {
+        return estado.equals(CANCELADA);
+    }
+
+    public String getCodigo()
+    {
+        return codigo;
+    }
+
+    public Pasajero getPasajero()
+    {
+        return pasajero;
+    }
+
+    public Vehiculo getVehiculo()
+    {
+        return vehiculo;
+    }
+
+    public String getFechaCreacion()
+    {
+        return fechaCreacion;
+    }
+
+    public String getFechaViaje()
+    {
+        return fechaViaje;
+    }
+
+    public String getEstado()
+    {
+        return estado;
+    }
+
 }
