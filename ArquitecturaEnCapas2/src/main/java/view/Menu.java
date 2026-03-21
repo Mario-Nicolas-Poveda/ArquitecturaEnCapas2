@@ -627,6 +627,25 @@ public class Menu {
             }
         }
     }
+    
+    private String leerFecha(String campo) {
+        while (true) {
+            System.out.print(campo + " (dd/MM/yyyy): ");
+            String valor = sc.nextLine().trim();
+            if (!valor.matches("\\d{2}/\\d{2}/\\d{4}")) {
+                System.out.println("ERROR: Formato invalido. Use dd/MM/yyyy. Ejemplo: 25/12/2026");
+                continue;
+            }
+            try {
+                java.time.format.DateTimeFormatter fmt =
+                        java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                java.time.LocalDate.parse(valor, fmt);
+                return valor;
+            } catch (Exception e) {
+                System.out.println("ERROR: Fecha inexistente. Verifique el dia, mes y anio.");
+            }
+        }
+    }
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
