@@ -283,5 +283,11 @@ public class Menu {
                 return -1;
             }
         }
+        
+        private double leerDouble() {
+            try { return Double.parseDouble(sc.nextLine().trim()); }
+            catch (NumberFormatException e) { return 0; }
+        }
+    }
 
-}
+
