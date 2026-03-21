@@ -21,9 +21,11 @@ public class Menu {
 
     public Menu() {
         sc = new Scanner(System.in);
+        rutaService = new RutaService();
         vehiculoService = new VehiculoService();
         personaService = new PersonaService();
         ticketService = new TicketService(vehiculoService, personaService);
+        rutaService = new RutaService();
     }
 
     public void mostrarMenuPrincipal() {
