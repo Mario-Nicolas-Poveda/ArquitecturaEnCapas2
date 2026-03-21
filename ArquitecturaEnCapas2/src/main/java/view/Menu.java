@@ -660,6 +660,22 @@ public class Menu {
             }
         }
     }
+    
+    private String leerFechaNacimiento() {
+        while (true) {
+            String valor = leerFecha("Fecha de nacimiento");
+            java.time.format.DateTimeFormatter fmt =
+                    java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            java.time.LocalDate fecha = java.time.LocalDate.parse(valor, fmt);
+            if (!fecha.isBefore(java.time.LocalDate.now())) {
+                System.out.println("ERROR: La fecha de nacimiento no puede ser hoy ni en el futuro.");
+            } else if (java.time.Period.between(fecha, java.time.LocalDate.now()).getYears() < 5) {
+                System.out.println("ERROR: La edad minima para registrarse es 5 anios.");
+            } else {
+                return valor;
+            }
+        }
+    }
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
