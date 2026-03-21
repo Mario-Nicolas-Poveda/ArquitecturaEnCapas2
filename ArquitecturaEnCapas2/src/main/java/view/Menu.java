@@ -17,6 +17,7 @@ public class Menu {
     private VehiculoService vehiculoService;
     private PersonaService personaService;
     private TicketService ticketService;
+    private RutaService rutaService;
 
     public Menu() {
         sc = new Scanner(System.in);
@@ -63,7 +64,7 @@ public class Menu {
                 case 1: registrarRuta(); break;
                 case 2: listarRutas(); break;
                 case 0: break;
-                default: System.out.println("Opcion no valida.");
+                default: System.out.println("Opcion no valida");
             }
         }
     }
