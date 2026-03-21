@@ -133,5 +133,21 @@ public class ReservaService {
         
         return canceladas;
     }
+    
+    public List<Reserva> listarActivas() {
+        List<Reserva> lista = new ArrayList<>();
+        for (Reserva r : reservas) {
+            if (r.isActiva()) lista.add(r);
+        }
+        return lista;
+    }
+
+    public List<Reserva> historialPorPasajero(String cedula) {
+        List<Reserva> lista = new ArrayList<>();
+        for (Reserva r : reservas) {
+            if (r.getPasajero().getCedula().equals(cedula)) lista.add(r);
+        }
+        return lista;
+    }
 
 }
