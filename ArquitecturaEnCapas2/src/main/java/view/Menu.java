@@ -128,6 +128,16 @@ public class Menu {
         }
     }
 
+    private void convertirReserva() {
+        System.out.print("Codigo de la reserva: ");
+        String codigo = sc.nextLine().trim();
+        System.out.print("Origen: ");
+        String origen = sc.nextLine().trim();
+        System.out.print("Destino: ");
+        String destino = sc.nextLine().trim();
+        System.out.println(reservaService.convertirEnTicket(codigo, origen, destino));
+    }
+
     private void menuReportes() {
         int op = -1;
         while (op != 0) {
