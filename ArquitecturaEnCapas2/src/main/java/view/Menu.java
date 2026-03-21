@@ -699,6 +699,17 @@ public class Menu {
             System.out.println("ERROR: Tipo invalido. Escriba exactamente: Buseta, MicroBus o Bus");
         }
     }
+    
+    private String leerTipoPasajero() {
+        while (true) {
+            System.out.print("Tipo de pasajero: ");
+            String valor = sc.nextLine().trim();
+            if (valor.equals("Regular") || valor.equals("Estudiante") || valor.equals("AdultoMayor")) {
+                return valor;
+            }
+            System.out.println("ERROR: Tipo invalido. Escriba exactamente: Regular, Estudiante o AdultoMayor");
+        }
+    }
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
