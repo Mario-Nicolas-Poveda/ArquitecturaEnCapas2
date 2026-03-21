@@ -85,5 +85,17 @@ public class ReservaService {
              + "Recuerde: tiene 24 horas para convertirla en ticket antes de que expire.";
     }
 
+    public String cancelarReserva(String codigo) {
+        Reserva r = buscarPorCodigo(codigo);
+        if (r == null)
+            return "ERROR: No existe reserva con codigo " + codigo;
+        if (!r.isActiva())
+            return "ERROR: La reserva " + codigo + " no esta activa (estado: " + r.getEstado() + ")";
+
+        r.cancelar();
+        reservaDAO.reescribirReservas(reservas);
+        return "Reserva " + codigo + " cancelada. El cupo queda disponible.";
+    }
+    
     
 }
