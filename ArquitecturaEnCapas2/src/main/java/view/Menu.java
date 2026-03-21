@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package view;
+
 import model.*;
 import service.*;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ public class Menu {
     private PersonaService personaService;
     private TicketService ticketService;
     private RutaService rutaService;
-    private ReservaService  reservaService;
+    private ReservaService reservaService;
 
     public Menu() {
         sc = new Scanner(System.in);
@@ -26,7 +27,7 @@ public class Menu {
         personaService = new PersonaService();
         ticketService = new TicketService(vehiculoService, personaService);
         rutaService = new RutaService();
-        reservaService  = new ReservaService(vehiculoService, personaService, ticketService);
+        reservaService = new ReservaService(vehiculoService, personaService, ticketService);
     }
 
     public void mostrarMenuPrincipal() {
@@ -39,25 +40,42 @@ public class Menu {
             System.out.println("3. Gestion de personas");
             System.out.println("4. Venta de tickets");
             System.out.println("5. Consultas y estadisticas");
-            System.out.println("6. Reportes con Filtros"); 
+            System.out.println("6. Reportes con Filtros");
             System.out.println("7. Reservas");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opcion: ");
             opcion = leerEntero();
             switch (opcion) {
-                case 1: menuRutas(); break;
-                case 2: menuVehiculos(); break;
-                case 3: menuPersonas(); break;
-                case 4: menuTickets(); break;
-                case 5: menuEstadisticas(); break;
-                case 6: menuReportes(); break;
-                case 7: menuReservas(); break;
-                case 0: System.out.println("Saliendo"); break;
-                default: System.out.println("Error, opcion no valida");
+                case 1:
+                    menuRutas();
+                    break;
+                case 2:
+                    menuVehiculos();
+                    break;
+                case 3:
+                    menuPersonas();
+                    break;
+                case 4:
+                    menuTickets();
+                    break;
+                case 5:
+                    menuEstadisticas();
+                    break;
+                case 6:
+                    menuReportes();
+                    break;
+                case 7:
+                    menuReservas();
+                    break;
+                case 0:
+                    System.out.println("Saliendo");
+                    break;
+                default:
+                    System.out.println("Error, opcion no valida");
             }
         }
     }
-    
+
     private void menuReservas() {
         int op = -1;
         while (op != 0) {
@@ -72,18 +90,32 @@ public class Menu {
             System.out.print("Opcion: ");
             op = leerEntero();
             switch (op) {
-                case 1: crearReserva(); break;
-                case 2: cancelarReserva(); break;
-                case 3: listarReservasActivas(); break;
-                case 4: historialPasajero(); break;
-                case 5: convertirReserva(); break;
-                case 6: verificarVencidas(); break;
-                case 0: break;
-                default: System.out.println("Error, opcion no valida");
+                case 1:
+                    crearReserva();
+                    break;
+                case 2:
+                    cancelarReserva();
+                    break;
+                case 3:
+                    listarReservasActivas();
+                    break;
+                case 4:
+                    historialPasajero();
+                    break;
+                case 5:
+                    convertirReserva();
+                    break;
+                case 6:
+                    verificarVencidas();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Error, opcion no valida");
             }
         }
     }
-    
+
     private void crearReserva() {
         System.out.print("Cedula del pasajero: ");
         String cedula = sc.nextLine().trim();
@@ -93,13 +125,13 @@ public class Menu {
         String fechaViaje = sc.nextLine().trim();
         System.out.println(reservaService.crearReserva(cedula, placa, fechaViaje));
     }
-    
+
     private void cancelarReserva() {
         System.out.print("Codigo de la reserva: ");
         String codigo = sc.nextLine().trim();
         System.out.println(reservaService.cancelarReserva(codigo));
     }
-    
+
     private void listarReservasActivas() {
         List<Reserva> lista = reservaService.listarActivas();
         if (lista.isEmpty()) {
@@ -160,16 +192,26 @@ public class Menu {
             System.out.print("Opcion: ");
             op = leerEntero();
             switch (op) {
-                case 1: reportePorFecha(); break;
-                case 2: reportePorTipoVehiculo(); break;
-                case 3: reportePorTipoPasajero(); break;
-                case 4: ticketService.mostrarResumenDia(); break;
-                case 0: break;
-                default: System.out.println("Error opcion no valida");
+                case 1:
+                    reportePorFecha();
+                    break;
+                case 2:
+                    reportePorTipoVehiculo();
+                    break;
+                case 3:
+                    reportePorTipoPasajero();
+                    break;
+                case 4:
+                    ticketService.mostrarResumenDia();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Error opcion no valida");
             }
         }
     }
-    
+
     private void reportePorTipoVehiculo() {
         System.out.println("Tipos: Buseta | MicroBus | Bus");
         System.out.print("Ingresa el tipo: ");
@@ -181,7 +223,7 @@ public class Menu {
             System.out.println("----------");
         }
     }
-    
+
     private void reportePorTipoPasajero() {
         System.out.println("Tipos: Regular | Estudiante | AdultoMayor");
         System.out.print("Ingresa el tipo: ");
@@ -193,7 +235,7 @@ public class Menu {
             System.out.println("-----------");
         }
     }
-    
+
     private void reportePorFecha() {
         System.out.print("Ingresa la fecha (dd/MM/yyyy): ");
         String fecha = sc.nextLine().trim();
@@ -215,14 +257,20 @@ public class Menu {
             System.out.print("Opcion: ");
             op = leerEntero();
             switch (op) {
-                case 1: registrarRuta(); break;
-                case 2: listarRutas(); break;
-                case 0: break;
-                default: System.out.println("Opcion no valida");
+                case 1:
+                    registrarRuta();
+                    break;
+                case 2:
+                    listarRutas();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Opcion no valida");
             }
         }
     }
-    
+
     private void registrarRuta() {
         System.out.print("Codigo de ruta: ");
         String codigo = sc.nextLine().trim();
@@ -240,13 +288,13 @@ public class Menu {
 
     private void listarRutas() {
         List<Ruta> lista = rutaService.listarRutas();
-        if (lista.isEmpty()) { 
-            System.out.println("No hay rutas registradas"); 
-            return; 
+        if (lista.isEmpty()) {
+            System.out.println("No hay rutas registradas");
+            return;
         }
-        for (Ruta r : lista) { 
-            r.imprimirDetalle(); 
-            System.out.println("-------------"); 
+        for (Ruta r : lista) {
+            r.imprimirDetalle();
+            System.out.println("-------------");
         }
     }
 
@@ -262,213 +310,298 @@ public class Menu {
             System.out.print("Opcion: ");
             op = leerEntero();
             switch (op) {
-                case 1: registrarVehiculo("Buseta"); break;
-                case 2: registrarVehiculo("MicroBus"); break;
-                case 3: registrarVehiculo("Bus"); break;
-                case 4: listarVehiculos(); break;
-                case 0: break;
-                default: System.out.println("Error, opcion no valida");
+                case 1:
+                    registrarVehiculo("Buseta");
+                    break;
+                case 2:
+                    registrarVehiculo("MicroBus");
+                    break;
+                case 3:
+                    registrarVehiculo("Bus");
+                    break;
+                case 4:
+                    listarVehiculos();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Error, opcion no valida");
             }
         }
     }
-    
-        private void registrarVehiculo(String tipo) {
-            System.out.print("Placa: ");
-            String placa = sc.nextLine().trim();
 
-            List<Ruta> rutas = rutaService.listarRutas();
-            if (rutas.isEmpty()) {
-                System.out.println("Error, no hay rutas registradas registra una ruta primero");
-                System.out.print("Ingresa el nombre de ruta manualmente: ");
-                String rutaManual = sc.nextLine().trim();
-                Vehiculo v = crearVehiculo(tipo, placa, rutaManual);
-                System.out.println(vehiculoService.registrarVehiculo(v));
-                return;
-            }
+    private void registrarVehiculo(String tipo) {
+        System.out.print("Placa: ");
+        String placa = sc.nextLine().trim();
 
-            System.out.println("Rutas disponibles:");
-            for (int i = 0; i < rutas.size(); i++) {
-                System.out.println((i + 1) + ". " + rutas.get(i));
-            }
-            System.out.print("Selecciona el numero de ruta: ");
-            int seleccion = leerEntero();
-            if (seleccion < 1 || seleccion > rutas.size()) {
-                System.out.println("Seleccion invalida");
-                return;
-            }
-            Ruta rutaSeleccionada = rutas.get(seleccion - 1);
-            Vehiculo v = crearVehiculo(tipo, placa, rutaSeleccionada.toString());
+        List<Ruta> rutas = rutaService.listarRutas();
+        if (rutas.isEmpty()) {
+            System.out.println("Error, no hay rutas registradas registra una ruta primero");
+            System.out.print("Ingresa el nombre de ruta manualmente: ");
+            String rutaManual = sc.nextLine().trim();
+            Vehiculo v = crearVehiculo(tipo, placa, rutaManual);
             System.out.println(vehiculoService.registrarVehiculo(v));
+            return;
         }
 
-        private void listarVehiculos() {
-            List<Vehiculo> lista = vehiculoService.listarVehiculos();
-            if (lista.isEmpty()) {
-                System.out.println("Error no hay vehiculos registrados");
-                return;
-            }
-            for (Vehiculo v : lista) {
-                v.imprimirDetalle();
-                System.out.println("---------------");
-            }
+        System.out.println("Rutas disponibles:");
+        for (int i = 0; i < rutas.size(); i++) {
+            System.out.println((i + 1) + ". " + rutas.get(i));
         }
-        
-        private void menuPersonas() {
-            int op = -1;
-            while (op != 0) {
-                System.out.println("\nPERSONAS");
-                System.out.println("1. Registrar Conductor");
-                System.out.println("2. Registrar Pasajero Regular");
-                System.out.println("3. Registrar Pasajero Estudiante");
-                System.out.println("4. Registrar Pasajero Adulto Mayor");
-                System.out.println("5. Listar Conductores");
-                System.out.println("6. Listar Pasajeros");
-                System.out.println("0. Volver");
-                System.out.print("Opcion: ");
-                op = leerEntero();
-                switch (op) {
-                    case 1: registrarConductor(); break;
-                    case 2: registrarPasajero("Regular"); break;
-                    case 3: registrarPasajero("Estudiante"); break;
-                    case 4: registrarPasajero("AdultoMayor"); break;
-                    case 5: listarConductores(); break;
-                    case 6: listarPasajeros(); break;
-                    case 0: break;
-                    default: System.out.println("Error opcion no valida");
-                }
-            }
+        System.out.print("Selecciona el numero de ruta: ");
+        int seleccion = leerEntero();
+        if (seleccion < 1 || seleccion > rutas.size()) {
+            System.out.println("Seleccion invalida");
+            return;
         }
-    
-        private void registrarConductor() {
-            System.out.print("Cedula: ");
-            String cedula = sc.nextLine().trim();
-            System.out.print("Nombre: ");
-            String nombre = sc.nextLine().trim();
-            System.out.print("Numero de licencia: ");
-            String licencia = sc.nextLine().trim();
-            System.out.print("Categoria de licencia (B1, B2, C1, C2): ");
-            String categoria = sc.nextLine().trim();
-            Conductor c = new Conductor(cedula, nombre, licencia, categoria);
-            System.out.println(personaService.registrarConductor(c));
-        }
+        Ruta rutaSeleccionada = rutas.get(seleccion - 1);
+        Vehiculo v = crearVehiculo(tipo, placa, rutaSeleccionada.toString());
+        System.out.println(vehiculoService.registrarVehiculo(v));
+    }
 
-        private void registrarPasajero(String tipo) {
-            System.out.print("Cedula: ");
-            String cedula = sc.nextLine().trim();
-            System.out.print("Nombre: ");
-            String nombre = sc.nextLine().trim();
-            System.out.print("Fecha de nacimiento (dd/MM/yyyy): ");
-            String fechaNac = sc.nextLine().trim();
-            System.out.println(personaService.registrarPasajero(cedula, nombre, fechaNac, tipo));
+    private void listarVehiculos() {
+        List<Vehiculo> lista = vehiculoService.listarVehiculos();
+        if (lista.isEmpty()) {
+            System.out.println("Error no hay vehiculos registrados");
+            return;
         }
+        for (Vehiculo v : lista) {
+            v.imprimirDetalle();
+            System.out.println("---------------");
+        }
+    }
 
-        private void listarConductores() {
-            List<Conductor> lista = personaService.listarConductores();
-            if (lista.isEmpty()) { System.out.println("Error no hay conductores registrados"); return; }
-            for (Conductor c : lista) { c.imprimirDetalle(); System.out.println("----------"); }
-        }
-        
-        private void listarPasajeros() {
-            List<Pasajero> lista = personaService.listarPasajeros();
-            if (lista.isEmpty()) { System.out.println("Error hay pasajeros registrados"); return; }
-            for (Pasajero p : lista) { p.imprimirDetalle(); System.out.println("----------"); }
-        }
-
-        private void menuTickets() {
-            int op = -1;
-            while (op != 0) {
-                System.out.println("\nTICKETS");
-                System.out.println("1. Vender Ticket");
-                System.out.println("2. Listar todos los Tickets");
-                System.out.println("0. Volver");
-                System.out.print("Opcion: ");
-                op = leerEntero();
-                switch (op) {
-                    case 1: venderTicket(); break;
-                    case 2: listarTickets(); break;
-                    case 0: break;
-                    default: System.out.println("Error opcion no valida");
-                }
+    private void menuPersonas() {
+        int op = -1;
+        while (op != 0) {
+            System.out.println("\nPERSONAS");
+            System.out.println("1. Registrar Conductor");
+            System.out.println("2. Registrar Pasajero Regular");
+            System.out.println("3. Registrar Pasajero Estudiante");
+            System.out.println("4. Registrar Pasajero Adulto Mayor");
+            System.out.println("5. Listar Conductores");
+            System.out.println("6. Listar Pasajeros");
+            System.out.println("0. Volver");
+            System.out.print("Opcion: ");
+            op = leerEntero();
+            switch (op) {
+                case 1:
+                    registrarConductor();
+                    break;
+                case 2:
+                    registrarPasajero("Regular");
+                    break;
+                case 3:
+                    registrarPasajero("Estudiante");
+                    break;
+                case 4:
+                    registrarPasajero("AdultoMayor");
+                    break;
+                case 5:
+                    listarConductores();
+                    break;
+                case 6:
+                    listarPasajeros();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Error opcion no valida");
             }
         }
+    }
 
-        private void venderTicket() {
-            System.out.print("Cedula del pasajero: ");
-            String cedula = sc.nextLine().trim();
-            System.out.print("Placa del vehiculo: ");
-            String placa = sc.nextLine().trim();
-            System.out.print("Origen: ");
-            String origen = sc.nextLine().trim();
-            System.out.print("Destino: ");
-            String destino = sc.nextLine().trim();
-            System.out.println(ticketService.venderTicket(cedula, placa, origen, destino));
+    private void registrarConductor() {
+        System.out.print("Cedula: ");
+        String cedula = sc.nextLine().trim();
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine().trim();
+        System.out.print("Numero de licencia: ");
+        String licencia = sc.nextLine().trim();
+        System.out.print("Categoria de licencia (B1, B2, C1, C2): ");
+        String categoria = sc.nextLine().trim();
+        Conductor c = new Conductor(cedula, nombre, licencia, categoria);
+        System.out.println(personaService.registrarConductor(c));
+    }
+
+    private void registrarPasajero(String tipo) {
+        System.out.print("Cedula: ");
+        String cedula = sc.nextLine().trim();
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine().trim();
+        System.out.print("Fecha de nacimiento (dd/MM/yyyy): ");
+        String fechaNac = sc.nextLine().trim();
+        System.out.println(personaService.registrarPasajero(cedula, nombre, fechaNac, tipo));
+    }
+
+    private void listarConductores() {
+        List<Conductor> lista = personaService.listarConductores();
+        if (lista.isEmpty()) {
+            System.out.println("Error no hay conductores registrados");
+            return;
         }
-
-        private void listarTickets() {
-            List<Ticket> lista = ticketService.listarTickets();
-            if (lista.isEmpty()) { System.out.println("Error, no hay tickets vendidos"); return; }
-            for (Ticket t : lista) { t.imprimirDetalle(); System.out.println("---------------"); }
+        for (Conductor c : lista) {
+            c.imprimirDetalle();
+            System.out.println("----------");
         }
+    }
 
-        private void menuEstadisticas() {
-            int op = -1;
-            while (op != 0) {
-                System.out.println("\nESTADISTICAS");
-                System.out.println("1. Total recaudado");
-                System.out.println("2. Pasajeros por tipo");
-                System.out.println("3. Vehiculo con mas tickets");
-                System.out.println("0. Volver");
-                System.out.print("Opcion: ");
-                op = leerEntero();
-                switch (op) {
-                    case 1: System.out.println("Total recaudado: $" + ticketService.calcularTotalRecaudado()); break;
-                    case 2: ticketService.mostrarPasajerosPorTipo(); break;
-                    case 3: ticketService.mostrarVehiculoConMasTickets(); break;
-                    case 0: break;
-                    default: System.out.println("Error, opcion no valida");
-                }
+    private void listarPasajeros() {
+        List<Pasajero> lista = personaService.listarPasajeros();
+        if (lista.isEmpty()) {
+            System.out.println("Error hay pasajeros registrados");
+            return;
+        }
+        for (Pasajero p : lista) {
+            p.imprimirDetalle();
+            System.out.println("----------");
+        }
+    }
+
+    private void menuTickets() {
+        int op = -1;
+        while (op != 0) {
+            System.out.println("\nTICKETS");
+            System.out.println("1. Vender Ticket");
+            System.out.println("2. Listar todos los Tickets");
+            System.out.println("0. Volver");
+            System.out.print("Opcion: ");
+            op = leerEntero();
+            switch (op) {
+                case 1:
+                    venderTicket();
+                    break;
+                case 2:
+                    listarTickets();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Error opcion no valida");
             }
         }
+    }
 
-        private int leerEntero() {
+    private void venderTicket() {
+        System.out.print("Cedula del pasajero: ");
+        String cedula = sc.nextLine().trim();
+        System.out.print("Placa del vehiculo: ");
+        String placa = sc.nextLine().trim();
+        System.out.print("Origen: ");
+        String origen = sc.nextLine().trim();
+        System.out.print("Destino: ");
+        String destino = sc.nextLine().trim();
+        System.out.println(ticketService.venderTicket(cedula, placa, origen, destino));
+    }
+
+    private void listarTickets() {
+        List<Ticket> lista = ticketService.listarTickets();
+        if (lista.isEmpty()) {
+            System.out.println("Error, no hay tickets vendidos");
+            return;
+        }
+        for (Ticket t : lista) {
+            t.imprimirDetalle();
+            System.out.println("---------------");
+        }
+    }
+
+    private void menuEstadisticas() {
+        int op = -1;
+        while (op != 0) {
+            System.out.println("\nESTADISTICAS");
+            System.out.println("1. Total recaudado");
+            System.out.println("2. Pasajeros por tipo");
+            System.out.println("3. Vehiculo con mas tickets");
+            System.out.println("0. Volver");
+            System.out.print("Opcion: ");
+            op = leerEntero();
+            switch (op) {
+                case 1:
+                    System.out.println("Total recaudado: $" + ticketService.calcularTotalRecaudado());
+                    break;
+                case 2:
+                    ticketService.mostrarPasajerosPorTipo();
+                    break;
+                case 3:
+                    ticketService.mostrarVehiculoConMasTickets();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Error, opcion no valida");
+            }
+        }
+    }
+
+    private int leerEntero() {
+        try {
+            String linea = sc.nextLine();
+            return Integer.parseInt(linea.trim());
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
+    private double leerDouble() {
+        while (true) {
             try {
-                String linea = sc.nextLine();
-                return Integer.parseInt(linea.trim());
-            } catch (NumberFormatException e) {
-                return -1;
-            }
-        }
-        
-        private double leerDouble() {
-            try { return Double.parseDouble(sc.nextLine().trim()); }
-            catch (NumberFormatException e) { return 0; }
-        }
-        
-        
-        private Vehiculo crearVehiculo(String tipo, String placa, String ruta) {
-           if (tipo.equals("Buseta")) return new Buseta(placa, ruta);
-           else if (tipo.equals("MicroBus")) return new MicroBus(placa, ruta);
-           else return new Bus(placa, ruta);
-       }
-   
-        
-        //validaciones
-        
-        // Solo letras y espacios (para nombres)
-        private String leerNombre(String campo) {
-            String valor;
-            while (true) {
-                System.out.print(campo + ": ");
-                valor = sc.nextLine().trim();
-                if (valor.isEmpty()) {
-                    System.out.println("ERROR: El campo no puede estar vacio.");
-                } else if (!valor.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
-                    System.out.println("ERROR: " + campo + " solo puede contener letras");
+                double valor = Double.parseDouble(sc.nextLine().trim());
+              
+                if (valor <= 0) {
+                    System.out.println("ERROR: El valor debe ser mayor a 0. Ejemplo: 850.5");
                 } else {
                     return valor;
                 }
+            } catch (NumberFormatException e) {
+                
+                System.out.println("ERROR: Ingrese un numero valido Ejemplo: 850.5");
+                System.out.print("Distancia (km): ");
             }
         }
+    }
+
+    private Vehiculo crearVehiculo(String tipo, String placa, String ruta) {
+        if (tipo.equals("Buseta"))
+            return new Buseta(placa, ruta);
+        else if (tipo.equals("MicroBus"))
+            return new MicroBus(placa, ruta);
+        else
+            return new Bus(placa, ruta);
+    }
+
+    // validaciones
+
+    // Solo letras y espacios (para nombres)
+    private String leerNombre(String campo) {
+        String valor;
+        while (true) {
+            System.out.print(campo + ": ");
+            valor = sc.nextLine().trim();
+            if (valor.isEmpty()) {
+                System.out.println("ERROR: El campo no puede estar vacio");
+            } else if (!valor.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]+")) {
+                System.out.println("ERROR: " + campo + " solo puede contener letras");
+            } else {
+                return valor;
+            }
+        }
+    }
+
+    // Solo digitos, entre 6 y 10 caracteres (para cedulas)
+    private String leerCedula(String campo) {
+        String valor;
+        while (true) {
+            System.out.print(campo + ": ");
+            valor = sc.nextLine().trim();
+            if (valor.isEmpty()) {
+                System.out.println("ERROR: El campo no puede estar vacio");
+            } else if (!valor.matches("\\d{6,10}")) {
+                System.out.println("ERROR: " + campo + " debe tener entre 6 y 10 digitos numericos");
+            } else {
+                return valor;
+            }
+        }
+    }
+
 }
-
-
