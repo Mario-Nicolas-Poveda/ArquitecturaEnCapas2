@@ -742,6 +742,19 @@ public class Menu {
             }
         }
     }
+    
+    private void limpiarPantalla() {
+        try {
+            String os = System.getProperty("os.name").toLowerCase();
+            if (os.contains("win")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (Exception e) {
+            for (int i = 0; i < 50; i++) System.out.println();
+        }
+    }
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
