@@ -51,8 +51,34 @@ public class Menu {
                 case 4: menuTickets(); break;
                 case 5: menuEstadisticas(); break;
                 case 6: menuReportes(); break;
-                case 7: menuReservas();     break;
+                case 7: menuReservas(); break;
                 case 0: System.out.println("Saliendo"); break;
+                default: System.out.println("Error, opcion no valida");
+            }
+        }
+    }
+    
+    private void menuReservas() {
+        int op = -1;
+        while (op != 0) {
+            System.out.println("\nRESERVAS");
+            System.out.println("1. Crear reserva");
+            System.out.println("2. Cancelar reserva");
+            System.out.println("3. Listar reservas activas");
+            System.out.println("4. Historial de reservas de un pasajero");
+            System.out.println("5. Convertir reserva en ticket");
+            System.out.println("6. Verificar reservas vencidas");
+            System.out.println("0. Volver");
+            System.out.print("Opcion: ");
+            op = leerEntero();
+            switch (op) {
+                case 1: crearReserva(); break;
+                case 2: cancelarReserva(); break;
+                case 3: listarReservasActivas(); break;
+                case 4: historialPasajero(); break;
+                case 5: convertirReserva(); break;
+                case 6: verificarVencidas(); break;
+                case 0: break;
                 default: System.out.println("Error, opcion no valida");
             }
         }
