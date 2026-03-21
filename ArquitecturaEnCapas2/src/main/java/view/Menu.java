@@ -601,6 +601,21 @@ public class Menu {
             }
         }
     }
+    
+    private String leerAlfanumerico(String campo) {
+        while (true) {
+            System.out.print(campo + ": ");
+            String valor = sc.nextLine().trim();
+            if (valor.isEmpty()) {
+                System.out.println("ERROR: El campo '" + campo + "' no puede estar vacio.");
+            } else if (!valor.matches("[a-zA-Z0-9]+")) {
+                System.out.println("ERROR: '" + campo + "' solo puede contener letras y numeros sin espacios.");
+            } else {
+                return valor;
+            }
+        }
+    }
+    
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
