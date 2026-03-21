@@ -616,6 +616,17 @@ public class Menu {
         }
     }
     
+    private String leerPlaca() {
+        while (true) {
+            System.out.print("Placa (formato ABC123): ");
+            String valor = sc.nextLine().trim().toUpperCase();
+            if (!valor.matches("[A-Z]{3}[0-9]{3}")) {
+                System.out.println("ERROR: La placa debe tener exactamente 3 letras y 3 numeros. Ejemplo: ABC123");
+            } else {
+                return valor;
+            }
+        }
+    }
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
