@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.io.*;
 import model.Reserva;
+import model.Pasajero;
+import model.Vehiculo;
 
 /**
  *
@@ -47,5 +49,16 @@ public class ReservaDAO {
         return lista;
     }
 
-        
+    public void reescribirReservas(List<Reserva> reservas) {
+        try {
+            FileWriter fw = new FileWriter(ARCHIVO, false);
+            for (Reserva r : reservas) {
+                fw.write(r.toTexto() + "\n");
+            }
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error al reescribir reservas: " + e.getMessage());
+        }
+    }
+
 }
