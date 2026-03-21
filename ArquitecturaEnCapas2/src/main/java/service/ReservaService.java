@@ -119,4 +119,19 @@ public class ReservaService {
         return "Reserva " + codigo + " convertida en ticket exitosamente.\n" + resultado;
     }
 
+    public int verificarVencidas() {
+        int canceladas = 0;
+        for (Reserva r : reservas) {
+            if (r.isActiva() && r.estaVencida()) {
+                r.cancelar();
+                canceladas++;
+            }
+        }
+        if (canceladas > 0) {
+            reservaDAO.reescribirReservas(reservas);
+        }
+        
+        return canceladas;
+    }
+
 }
