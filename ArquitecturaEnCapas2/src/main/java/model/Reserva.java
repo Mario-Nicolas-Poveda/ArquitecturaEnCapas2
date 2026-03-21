@@ -23,4 +23,15 @@ public class Reserva implements Imprimible
     private static final DateTimeFormatter FMT
             = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
+    public Reserva(String codigo, Pasajero pasajero, Vehiculo vehiculo,
+            String fechaCreacion, String fechaViaje)
+    {
+        this.codigo = codigo;
+        this.pasajero = pasajero;
+        this.vehiculo = vehiculo;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaViaje = fechaViaje;
+        this.estado = ACTIVA;
+    }
+
 }
