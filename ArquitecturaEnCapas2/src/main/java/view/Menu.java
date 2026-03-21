@@ -100,6 +100,19 @@ public class Menu {
         System.out.println(reservaService.cancelarReserva(codigo));
     }
     
+    private void listarReservasActivas() {
+        List<Reserva> lista = reservaService.listarActivas();
+        if (lista.isEmpty()) {
+            System.out.println("No hay reservas activas");
+            return;
+        }
+        System.out.println("Total reservas activas: " + lista.size());
+        for (Reserva r : lista) {
+            r.imprimirDetalle();
+            System.out.println("--------------");
+        }
+    }
+
     private void menuReportes() {
         int op = -1;
         while (op != 0) {
