@@ -710,6 +710,22 @@ public class Menu {
             System.out.println("ERROR: Tipo invalido. Escriba exactamente: Regular, Estudiante o AdultoMayor");
         }
     }
+    
+    private int leerEnteroPositivo(String campo) {
+        while (true) {
+            System.out.print(campo + ": ");
+            try {
+                int valor = Integer.parseInt(sc.nextLine().trim());
+                if (valor <= 0) {
+                    System.out.println("ERROR: El valor debe ser mayor a 0.");
+                } else {
+                    return valor;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("ERROR: Ingrese un numero entero valido.");
+            }
+        }
+    }
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
