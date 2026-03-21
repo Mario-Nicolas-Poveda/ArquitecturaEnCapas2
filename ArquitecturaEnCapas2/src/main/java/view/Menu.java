@@ -113,6 +113,21 @@ public class Menu {
         }
     }
 
+    private void historialPasajero() {
+        System.out.print("Cedula del pasajero: ");
+        String cedula = sc.nextLine().trim();
+        List<Reserva> lista = reservaService.historialPorPasajero(cedula);
+        if (lista.isEmpty()) {
+            System.out.println("No hay reservas para ese pasajero");
+            return;
+        }
+        System.out.println("Historial de reservas (" + lista.size() + "):");
+        for (Reserva r : lista) {
+            r.imprimirDetalle();
+            System.out.println("-------------");
+        }
+    }
+
     private void menuReportes() {
         int op = -1;
         while (op != 0) {
