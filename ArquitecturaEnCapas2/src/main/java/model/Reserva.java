@@ -41,4 +41,21 @@ public class Reserva implements Imprimible
         this.estado = estado;
     }
 
+    public boolean estaVencida()
+    {
+        if (!estado.equals(ACTIVA))
+        {
+            return false;
+        }
+        try
+        {
+            LocalDateTime creacion = LocalDateTime.parse(fechaCreacion, FMT);
+            LocalDateTime ahora = LocalDateTime.now();
+            return java.time.Duration.between(creacion, ahora).toHours() >= 24;
+        } catch (Exception e)
+        {
+            return false;
+        }
+    }
+
 }
