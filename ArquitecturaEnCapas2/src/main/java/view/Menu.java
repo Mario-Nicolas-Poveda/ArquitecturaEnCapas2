@@ -40,6 +40,7 @@ public class Menu {
             System.out.println("4. Venta de tickets");
             System.out.println("5. Consultas y estadisticas");
             System.out.println("6. Reportes con Filtros"); 
+            System.out.println("7. Reservas");
             System.out.println("0. Salir");
             System.out.print("Seleccione una opcion: ");
             opcion = leerEntero();
@@ -50,6 +51,7 @@ public class Menu {
                 case 4: menuTickets(); break;
                 case 5: menuEstadisticas(); break;
                 case 6: menuReportes(); break;
+                case 7: menuReservas();     break;
                 case 0: System.out.println("Saliendo"); break;
                 default: System.out.println("Error, opcion no valida");
             }
