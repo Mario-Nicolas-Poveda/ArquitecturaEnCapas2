@@ -138,6 +138,16 @@ public class Menu {
         System.out.println(reservaService.convertirEnTicket(codigo, origen, destino));
     }
 
+    private void verificarVencidas() {
+        int canceladas = reservaService.verificarVencidas();
+        if (canceladas == 0) {
+            System.out.println("No hay reservas vencidas todo esta al dia");
+        } else {
+            System.out.println("Se cancelaron " + canceladas
+                    + " reserva(s) vencida(s) Los cupos quedaron liberados");
+        }
+    }
+
     private void menuReportes() {
         int op = -1;
         while (op != 0) {
@@ -299,7 +309,7 @@ public class Menu {
             }
             for (Vehiculo v : lista) {
                 v.imprimirDetalle();
-                System.out.println("----");
+                System.out.println("---------------");
             }
         }
         
