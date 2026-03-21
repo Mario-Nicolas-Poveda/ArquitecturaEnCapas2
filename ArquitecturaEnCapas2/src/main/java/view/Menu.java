@@ -688,6 +688,17 @@ public class Menu {
             System.out.println("ERROR: Categoria invalida. Solo se acepta B1, B2, C1 o C2.");
         }
     }
+    
+    private String leerTipoVehiculo() {
+        while (true) {
+            System.out.print("Tipo de vehiculo: ");
+            String valor = sc.nextLine().trim();
+            if (valor.equals("Buseta") || valor.equals("MicroBus") || valor.equals("Bus")) {
+                return valor;
+            }
+            System.out.println("ERROR: Tipo invalido. Escriba exactamente: Buseta, MicroBus o Bus");
+        }
+    }
     // Solo digitos, entre 6 y 10 caracteres (para cedulas)
     private String leerCedula(String campo) {
         String valor;
