@@ -150,4 +150,12 @@ public class ReservaService {
         return lista;
     }
 
+    private Reserva buscarPorCodigo(String codigo) {
+        for (Reserva r : reservas) {
+            if (r.getCodigo().equalsIgnoreCase(codigo)) return r;
+        }
+        return null;
+    }
+
+    
 }
